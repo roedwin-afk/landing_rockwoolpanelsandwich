@@ -1,0 +1,290 @@
+---
+import type { TranslationKeys } from "../../i18n/en";
+import type { Lang } from "../../i18n/utils";
+import { Thermometer, FlameKindling, Ruler, Table2 } from "lucide-astro";
+
+interface Props {
+  t: TranslationKeys;
+  lang: Lang;
+}
+
+const { t } = Astro.props;
+
+const tableRows = [
+  { thickness: 50,  weight: 14.10, uValue: 0.76, fire: 30,  sound: 31 },
+  { thickness: 80,  weight: 17.10, uValue: 0.48, fire: 60,  sound: 32 },
+  { thickness: 100, weight: 19.10, uValue: 0.39, fire: 90,  sound: 33 },
+  { thickness: 150, weight: 24.10, uValue: 0.26, fire: 180, sound: 35 },
+];
+---
+
+<section id="specs" class="specs">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="specs__header reveal">
+      <div class="specs__header-left">
+        <p class="specs__label">{t.specs.label}</p>
+        <h2 class="specs__title">{t.specs.title}</h2>
+      </div>
+      <p class="specs__description">{t.specs.description}</p>
+    </div>
+
+    <!-- Cards -->
+    <div class="specs__cards">
+      <div class="specs__card reveal">
+        <span class="specs__card-number">01.</span>
+        <div class="specs__card-icon"><Thermometer size={22} /></div>
+        <h3 class="specs__card-title">{t.specs.card1.title}</h3>
+        <p class="specs__card-desc">{t.specs.card1.description}</p>
+        <div class="specs__card-value">{t.specs.card1.value}</div>
+      </div>
+
+      <div class="specs__card specs__card--dark reveal">
+        <span class="specs__card-number">02.</span>
+        <div class="specs__card-icon"><FlameKindling size={22} /></div>
+        <h3 class="specs__card-title">{t.specs.card2.title}</h3>
+        <p class="specs__card-desc">{t.specs.card2.description}</p>
+        <div class="specs__card-value">{t.specs.card2.value}</div>
+      </div>
+
+      <div class="specs__card specs__card--dark reveal">
+        <span class="specs__card-number">03.</span>
+        <div class="specs__card-icon"><Ruler size={22} /></div>
+        <h3 class="specs__card-title">{t.specs.card3.title}</h3>
+        <p class="specs__card-desc">{t.specs.card3.description}</p>
+        <div class="specs__card-value">{t.specs.card3.value}</div>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="specs__table-wrapper reveal">
+      <div class="specs__table-header">
+        <div class="specs__table-header-left">
+          <Table2 size={16} />
+          <span>{t.specs.table.title}</span>
+        </div>
+      </div>
+      <div class="specs__table-scroll">
+        <table class="specs__table">
+          <thead>
+            <tr>
+              <th>{t.specs.table.th1}</th>
+              <th>{t.specs.table.th2}</th>
+              <th>{t.specs.table.th3}</th>
+              <th>{t.specs.table.th4}</th>
+              <th>{t.specs.table.th5}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tableRows.map((row) => (
+              <tr>
+                <td class="specs__table-bold">{row.thickness}</td>
+                <td>{row.weight}</td>
+                <td>{row.uValue}</td>
+                <td class="specs__table-fire">{row.fire}</td>
+                <td>{row.sound}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .specs {
+    padding-block: var(--space-24);
+    background-color: var(--color-bg);
+  }
+
+  /* Header */
+  .specs__header {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    margin-bottom: var(--space-16);
+  }
+
+  @media (min-width: 1024px) {
+    .specs__header {
+      grid-template-columns: 1fr 1fr;
+      align-items: end;
+    }
+  }
+
+  .specs__label {
+    font-size: var(--text-xs);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .specs__title {
+    font-size: var(--text-4xl);
+    font-weight: 900;
+    color: var(--color-dark);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+
+  .specs__description {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    align-self: end;
+  }
+
+  /* Cards */
+  .specs__cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    margin-bottom: var(--space-16);
+  }
+
+  @media (min-width: 768px) {
+    .specs__cards {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .specs__card {
+    background-color: var(--color-surface);
+    padding: var(--space-10);
+    border-top: 4px solid var(--color-primary);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition-base);
+  }
+
+  .specs__card--dark {
+    border-top-color: var(--color-dark);
+  }
+
+  .specs__card:hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .specs__card-number {
+    display: block;
+    font-size: var(--text-5xl);
+    font-weight: 900;
+    color: #e2e8f0;
+    margin-bottom: var(--space-6);
+    line-height: 1;
+  }
+
+  .specs__card-icon {
+    color: var(--color-primary);
+    margin-bottom: var(--space-4);
+  }
+
+  .specs__card-title {
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--color-dark);
+    margin-bottom: var(--space-4);
+  }
+
+  .specs__card-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin-bottom: var(--space-6);
+  }
+
+  .specs__card-value {
+    background-color: var(--color-surface-alt);
+    padding: var(--space-4);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-text);
+  }
+
+  /* Table */
+  .specs__table-wrapper {
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .specs__table-header {
+    background-color: var(--color-surface-alt);
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .specs__table-header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+  }
+
+  .specs__table-scroll {
+    overflow-x: auto;
+  }
+
+  .specs__table {
+    width: 100%;
+    text-align: left;
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    border-collapse: collapse;
+  }
+
+  .specs__table thead tr {
+    background-color: var(--color-dark);
+  }
+
+  .specs__table thead th {
+    padding: var(--space-5);
+    color: white;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
+
+  .specs__table tbody tr {
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color var(--transition-fast);
+  }
+
+  .specs__table tbody tr:hover {
+    background-color: rgba(249, 115, 22, 0.05);
+  }
+
+  .specs__table tbody tr:last-child {
+    background-color: var(--color-surface-alt);
+  }
+
+  .specs__table tbody td {
+    padding: var(--space-5);
+    color: var(--color-text);
+  }
+
+  .specs__table-bold {
+    font-weight: 700;
+  }
+
+  .specs__table-fire {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+</style>

@@ -1,0 +1,264 @@
+---
+import type { TranslationKeys } from "../../i18n/en";
+import type { Lang } from "../../i18n/utils";
+import { getAlternatePath } from "../../i18n/utils";
+import NavLinks from "../ui/NavLinks.astro";
+import MobileMenu from "./MobileMenu.astro";
+import { Globe, Layers, AlignJustify, BadgeCheck } from "lucide-astro";
+
+interface Props {
+  t: TranslationKeys;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+const base = import.meta.env.BASE_URL;
+const alternatePath = lang === "en" ? `${base}es/` : `${base}`;
+const prefix = lang === "es" ? `${base}es/` : `${base}`;
+const alternateLang = lang === "en" ? "ES" : "EN";
+
+
+---
+
+<header class="topbar">
+  <div class="container topbar__inner">
+    <div class="topbar__left">
+      <span><BadgeCheck size={14} /> CE Certified</span>
+      <span><Globe size={14} /> Global Shipping</span>
+    </div>
+    <div class="topbar__right">
+      Technical Support: <strong>+34 900 000 000</strong>
+    </div>
+  </div>
+</header>
+
+<nav class="navbar">
+  <div class="container navbar__inner">
+
+    <!-- Logo -->
+    <a href={`${prefix}/`} class="navbar__logo">
+      <div class="navbar__logo-icon">
+        <Layers size={22} color="white" />
+      </div>
+      <div class="navbar__logo-text">
+        <span class="navbar__logo-name">ROCKWOOL<span class="navbar__logo-dot">.</span></span>
+        <span class="navbar__logo-tagline">Sandwich Panel Expert</span>
+      </div>
+    </a>
+
+    <!-- Desktop nav -->
+    <div class="navbar__desktop">
+      <NavLinks t={t} lang={lang} variant="navbar" />
+      <a href={`${prefix}/#quote`} class="navbar__cta">
+        {t.nav.quote}
+      </a>
+      <a href={alternatePath} class="navbar__lang">
+        {alternateLang}
+      </a>
+    </div>
+
+    <!-- Mobile toggle -->
+    <button id="mobile-menu-open" class="navbar__burger" aria-label="Open menu">
+      <AlignJustify size={24} />
+    </button>
+
+  </div>
+</nav>
+
+<MobileMenu t={t} lang={lang} />
+
+<style>
+  /* Topbar */
+  .topbar {
+    background-color: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .topbar__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-block: var(--space-2);
+  }
+
+  .topbar__left {
+    display: flex;
+    gap: var(--space-6);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+  }
+
+  .topbar__left span {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--color-text-muted);
+  }
+
+  .topbar__left :global(svg) {
+    color: var(--color-primary);
+    flex-shrink: 0;
+  }
+
+  .topbar__right {
+    display: none;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+  }
+
+  .topbar__right strong {
+    color: var(--color-text);
+    margin-left: var(--space-1);
+  }
+
+  @media (min-width: 768px) {
+    .topbar__right {
+      display: block;
+    }
+  }
+
+  /* Navbar */
+  .navbar {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background-color: rgb(255 255 255 / 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .navbar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--nav-height);
+  }
+
+  /* Logo */
+  .navbar__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .navbar__logo-icon {
+    background-color: var(--color-dark);
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-md);
+    transition: background-color var(--transition-fast);
+    line-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .navbar__logo:hover .navbar__logo-icon {
+    background-color: var(--color-primary);
+  }
+
+  .navbar__logo-text {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar__logo-name {
+    font-size: var(--text-xl);
+    font-weight: 900;
+    color: var(--color-dark);
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+
+  .navbar__logo-dot {
+    color: var(--color-primary);
+  }
+
+  .navbar__logo-tagline {
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-text-subtle);
+    font-weight: 700;
+  }
+
+  /* Desktop nav */
+  .navbar__desktop {
+    display: none;
+    align-items: center;
+    gap: var(--space-10);
+  }
+
+  @media (min-width: 1024px) {
+    .navbar__desktop {
+      display: flex;
+    }
+  }
+
+  .navbar__cta {
+    background-color: var(--color-primary);
+    color: white;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-full);
+    box-shadow: var(--shadow-md);
+    transition:
+      background-color var(--transition-fast),
+      transform var(--transition-fast);
+  }
+
+  .navbar__cta:hover {
+    background-color: var(--color-dark);
+    transform: scale(1.05);
+  }
+
+  .navbar__lang {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-sm);
+    transition:
+      color var(--transition-fast),
+      border-color var(--transition-fast);
+  }
+
+  .navbar__lang:hover {
+    color: var(--color-text);
+    border-color: var(--color-text-muted);
+  }
+
+  /* Burger */
+  .navbar__burger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    padding: var(--space-2);
+    border-radius: var(--radius-md);
+    transition: background-color var(--transition-fast);
+  }
+
+  .navbar__burger:hover {
+    background-color: var(--color-surface-alt);
+  }
+
+  @media (min-width: 1024px) {
+    .navbar__burger {
+      display: none;
+    }
+  }
+</style>

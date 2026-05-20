@@ -1,0 +1,202 @@
+---
+import type { TranslationKeys } from "../../i18n/en";
+import type { Lang } from "../../i18n/utils";
+import NavLinks from "../ui/NavLinks.astro";
+import { X, Layers } from "lucide-astro";
+
+interface Props {
+  t: TranslationKeys;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const prefix = lang === "es" ? `${base}/es` : base;
+---
+
+<div id="mobile-menu" class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu__backdrop"></div>
+  <nav class="mobile-menu__panel">
+
+    <div class="mobile-menu__header">
+      <div class="mobile-menu__logo">
+        <div class="mobile-menu__logo-icon">
+          <Layers size={20} color="white" />
+        </div>
+        <span class="logo-text">ROCKWOOL<span class="logo-dot">.</span></span>
+      </div>
+      <button id="mobile-menu-close" class="mobile-menu__close" aria-label="Close menu">
+        <X size={22} />
+      </button>
+    </div>
+
+    <div class="mobile-menu__body">
+      <NavLinks t={t} lang={lang} variant="mobile" />
+
+      <div class="mobile-menu__cta">
+        <a href={`${prefix}/#quote`} class="mobile-menu__quote-btn">
+          {t.nav.quote}
+        </a>
+      </div>
+    </div>
+
+  </nav>
+</div>
+
+<style>
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+  }
+
+  .mobile-menu.is-open {
+    display: block;
+  }
+
+  .mobile-menu__backdrop {
+    position: absolute;
+    inset: 0;
+    background-color: rgb(0 0 0 / 0.5);
+    backdrop-filter: blur(4px);
+    animation: fadeIn var(--transition-base) ease forwards;
+  }
+
+  .mobile-menu__panel {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: min(20rem, 100%);
+    height: 100%;
+    background-color: var(--color-surface);
+    display: flex;
+    flex-direction: column;
+    animation: slideIn var(--transition-base) ease forwards;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .mobile-menu__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-5) var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .mobile-menu__logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+
+  .mobile-menu__logo-icon {
+    background-color: var(--color-dark);
+    padding: var(--space-2);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-text {
+    font-size: var(--text-xl);
+    font-weight: 900;
+    color: var(--color-dark);
+    letter-spacing: -0.05em;
+  }
+
+  .logo-dot {
+    color: var(--color-primary);
+  }
+
+  .mobile-menu__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-md);
+    color: var(--color-text);
+    transition: background-color var(--transition-fast);
+  }
+
+  .mobile-menu__close:hover {
+    background-color: var(--color-surface-alt);
+  }
+
+  .mobile-menu__body {
+    flex: 1;
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    overflow-y: auto;
+  }
+
+  .mobile-menu__cta {
+    margin-top: auto;
+  }
+
+  .mobile-menu__quote-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: var(--color-primary);
+    color: white;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: var(--space-4);
+    border-radius: var(--radius-full);
+    transition: background-color var(--transition-fast);
+  }
+
+  .mobile-menu__quote-btn:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+</style>
+
+<script>
+  function initMobileMenu() {
+    const menu = document.getElementById("mobile-menu");
+    const openBtn = document.getElementById("mobile-menu-open");
+    const closeBtn = document.getElementById("mobile-menu-close");
+    const backdrop = menu?.querySelector(".mobile-menu__backdrop");
+
+    if (!menu || !openBtn || !closeBtn) return;
+
+    function open() {
+      menu!.classList.add("is-open");
+      menu!.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function close() {
+      menu!.classList.remove("is-open");
+      menu!.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    openBtn.addEventListener("click", open);
+    closeBtn.addEventListener("click", close);
+    backdrop?.addEventListener("click", close);
+
+    menu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", close);
+    });
+  }
+
+  document.addEventListener("astro:page-load", initMobileMenu);
+</script>

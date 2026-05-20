@@ -1,0 +1,394 @@
+---
+import type { TranslationKeys } from "../../i18n/en";
+import type { Lang } from "../../i18n/utils";
+import { ArrowRight, ShieldCheck } from "lucide-astro";
+
+interface Props {
+  t: TranslationKeys;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const prefix = lang === "es" ? `${base}/es` : base;
+---
+
+<section class="hero">
+  <div class="hero__bg-pattern"></div>
+  <div class="hero__glow"></div>
+
+  <div class="container hero__inner">
+
+    <!-- Content -->
+    <div class="hero__content reveal">
+      <div class="hero__badge">
+        <ShieldCheck size={14} />
+        {t.hero.badge}
+      </div>
+
+      <h1 class="hero__title">
+        {t.hero.title1}<br />
+        <span class="hero__title-gradient">{t.hero.title2}</span><br />
+        {t.hero.title3}
+      </h1>
+
+      <p class="hero__description">
+        {t.hero.description}
+      </p>
+
+      <div class="hero__actions">
+        <a href={`${prefix}/#downloads`} class="hero__cta">
+          {t.hero.cta}
+          <ArrowRight size={14} />
+        </a>
+        <div class="hero__cert">
+          <div class="hero__cert-badges">
+            <span class="hero__cert-badge hero__cert-badge--dark">CE</span>
+            <span class="hero__cert-badge hero__cert-badge--orange">A1</span>
+          </div>
+          <span class="hero__cert-text">{t.hero.certified}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel diagram -->
+    <div class="hero__visual reveal">
+      <div class="hero__card">
+        <div class="hero__card-header">
+          <span class="hero__card-title">Section Detail v2.1</span>
+          <div class="hero__card-dots">
+            <span class="dot dot--red"></span>
+            <span class="dot dot--yellow"></span>
+            <span class="dot dot--green"></span>
+          </div>
+        </div>
+        <div class="hero__card-body">
+          <div class="hero__diagram">
+            <div class="hero__diagram-skin">Steel skin (0.5mm)</div>
+            <div class="hero__diagram-core">
+              <div class="hero__diagram-core-pattern"></div>
+              <span>Mineral Wool Core (Rockwool)</span>
+            </div>
+            <div class="hero__diagram-skin">Steel skin (0.5mm)</div>
+          </div>
+          <div class="hero__diagram-labels">
+            <div class="hero__diagram-label">
+              <span class="hero__diagram-label-line"></span>
+              <span>Non-combustible</span>
+            </div>
+            <div class="hero__diagram-label">
+              <span class="hero__diagram-label-line"></span>
+              <span>λ = 0.040 W/m·K</span>
+            </div>
+            <div class="hero__diagram-label">
+              <span class="hero__diagram-label-line"></span>
+              <span>EI up to 240 min</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .hero {
+    background-color: var(--color-dark);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero__bg-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    pointer-events: none;
+  }
+
+  .hero__glow {
+    position: absolute;
+    top: -10rem;
+    right: -10rem;
+    width: 40rem;
+    height: 40rem;
+    background: radial-gradient(circle, rgba(249,115,22,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+    padding-block: var(--space-24);
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hero__inner {
+      grid-template-columns: 3fr 2fr;
+    }
+  }
+
+  /* Badge */
+  .hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    background-color: rgba(249,115,22,0.15);
+    color: #fb923c;
+    border: 1px solid rgba(249,115,22,0.3);
+    padding: var(--space-1) var(--space-4);
+    border-radius: var(--radius-full);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-6);
+  }
+
+  /* Title */
+  .hero__title {
+    font-size: var(--text-5xl);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-8);
+  }
+
+  @media (min-width: 1024px) {
+    .hero__title {
+      font-size: var(--text-7xl);
+    }
+  }
+
+  .hero__title-gradient {
+    background: linear-gradient(to right, #ffffff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Description */
+  .hero__description {
+    font-size: var(--text-lg);
+    color: #94a3b8;
+    max-width: 38rem;
+    line-height: 1.7;
+    margin-bottom: var(--space-10);
+  }
+
+  /* Actions */
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  .hero__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+    background-color: white;
+    color: var(--color-dark);
+    font-size: var(--text-sm);
+    font-weight: 700;
+    padding: var(--space-4) var(--space-10);
+    border-radius: var(--radius-sm);
+    transition:
+      background-color var(--transition-fast),
+      color var(--transition-fast);
+  }
+
+  .hero__cta:hover {
+    background-color: var(--color-primary);
+    color: white;
+  }
+
+  .hero__cert {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    background-color: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: var(--space-3) var(--space-6);
+    border-radius: var(--radius-sm);
+  }
+
+  .hero__cert-badges {
+    display: flex;
+  }
+
+  .hero__cert-badge {
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    border: 2px solid var(--color-dark);
+  }
+
+  .hero__cert-badge--dark {
+    background-color: #475569;
+    margin-right: -0.5rem;
+    z-index: 1;
+  }
+
+  .hero__cert-badge--orange {
+    background-color: var(--color-primary);
+  }
+
+  .hero__cert-text {
+    font-size: var(--text-sm);
+    color: #cbd5e1;
+    font-weight: 500;
+  }
+
+  /* Visual / Card */
+  .hero__visual {
+    transition-delay: 150ms;
+  }
+
+  .hero__card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
+    transform: rotate(3deg);
+    transition: transform var(--transition-slow);
+  }
+
+  .hero__card:hover {
+    transform: rotate(0deg);
+  }
+
+  .hero__card-header {
+    background-color: #0f172a;
+    border-bottom: 1px solid #334155;
+    padding: var(--space-4) var(--space-6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hero__card-title {
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #64748b;
+    font-family: var(--font-mono);
+  }
+
+  .hero__card-dots {
+    display: flex;
+    gap: var(--space-1);
+  }
+
+  .dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--radius-full);
+  }
+
+  .dot--red { background-color: #f87171; }
+  .dot--yellow { background-color: #fbbf24; }
+  .dot--green { background-color: #4ade80; }
+
+  .hero__card-body {
+    padding: var(--space-8);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  /* Diagram */
+  .hero__diagram {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 2px solid #94a3b8;
+  }
+
+  .hero__diagram-skin {
+    background-color: #cbd5e1;
+    color: #475569;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    font-family: var(--font-mono);
+    text-align: center;
+    padding: var(--space-2);
+  }
+
+  .hero__diagram-core {
+    background-color: #fff7ed;
+    border-top: 3px solid #94a3b8;
+    border-bottom: 3px solid #94a3b8;
+    padding: var(--space-8) var(--space-4);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero__diagram-core-pattern {
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    background-image: repeating-linear-gradient(
+      45deg,
+      #000 0,
+      #000 1px,
+      transparent 0,
+      transparent 50%
+    );
+    background-size: 10px 10px;
+  }
+
+  .hero__diagram-core span {
+    position: relative;
+    z-index: 1;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    color: #1e293b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-family: var(--font-mono);
+  }
+
+  /* Labels */
+  .hero__diagram-labels {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .hero__diagram-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    font-size: var(--text-xs);
+    font-family: var(--font-mono);
+    color: #475569;
+  }
+
+  .hero__diagram-label-line {
+    display: block;
+    width: 1.5rem;
+    height: 1px;
+    background-color: var(--color-primary);
+    flex-shrink: 0;
+  }
+</style>
