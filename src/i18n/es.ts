@@ -52,38 +52,42 @@ export const es: TranslationKeys = {
   },
   comparison: {
     label: "Comparativa de Materiales",
-    title: "¿Por qué elegir Rockwool para proyectos de alto riesgo?",
+    title: "¿Por qué elegir Rockwool en proyectos de alto riesgo?",
+    metrics: {
+      fire: "Seguridad contra incendios",
+      thermal: "Aislamiento térmico",
+      acoustic: "Absorción acústica",
+    },
     pur: {
-      title: "PUR / Poliuretano",
-      description:
-        "Excelente aislante térmico, pero extremadamente vulnerable al fuego. Libera humos tóxicos durante la combustión.",
-      fire: "CRÍTICO",
-      thermal: "ÓPTIMO",
+      name: "PUR / Poliuretano",
+      desc: "Excelente aislante térmico, pero extremadamente vulnerable al fuego. Libera humos tóxicos en la combustión.",
+      fire: "Crítico",
+      thermal: "Óptimo",
     },
     pir: {
-      title: "PIR / Poliisocianurato",
-      description:
-        "Versión mejorada del PUR con mejor retardante de llama, pero aún clasificado como combustible.",
-      fire: "MODERADO",
-      thermal: "EXCELENTE",
+      name: "PIR / Poliisocianurato",
+      desc: "Versión mejorada del PUR con mejor retardante de llama, pero sigue clasificado como combustible.",
+      fire: "Moderado",
+      thermal: "Excelente",
     },
     rockwool: {
-      title: "Rockwool / Lana Mineral",
-      description:
-        "La única solución no combustible. Punto de fusión superior a 1.000°C. Cero humos tóxicos.",
-      fire: "MÁXIMO (A1)",
-      acoustic: "EL MEJOR DE SU CLASE",
+      name: "Rockwool / Lana de Roca",
+      desc: "La única solución no combustible. Punto de fusión superior a 1.000 °C. Cero humos tóxicos.",
+      fire: "Máximo (A1)",
+      acoustic: "Mejor de su clase",
+      badge: "Recomendado",
     },
   },
   downloads: {
     title: "Biblioteca de Recursos",
-    description:
-      "Accede a detalles CAD, fichas técnicas y certificados de incendio.",
-    access: "Acceder al Portal",
-    file1: "Catálogo General 2024",
-    file2: "Comportamiento al Fuego EI240",
-    file3: "Detalles de Instalación DWG",
-    file4: "Herramienta de Cálculo Valor U",
+    desc: "Accede a detalles CAD, fichas técnicas y certificados de incendio.",
+    portalBtn: "Acceder al Portal",
+    files: {
+      catalog: { name: "Catálogo General 2024", size: "12.4 MB" },
+      fire: { name: "Certificado EI240 Fuego", size: "3.1 MB" },
+      dwg: { name: "Detalles de Instalación DWG", size: "45.0 MB" },
+      tool: { name: "Herramienta Cálculo U-Value", size: "1.2 MB" },
+    },
   },
   footer: {
     description:

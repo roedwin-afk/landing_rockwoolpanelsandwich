@@ -51,36 +51,41 @@ export const en = {
   comparison: {
     label: "Material Comparison",
     title: "Why choose Rockwool for high-risk projects?",
+    metrics: {
+      fire: "Fire Safety",
+      thermal: "Thermal Insulation",
+      acoustic: "Acoustic Damping",
+    },
     pur: {
-      title: "PUR / Polyurethane",
-      description:
-        "Excellent thermal insulator, but extremely vulnerable to fire. Releases toxic fumes during combustion.",
-      fire: "CRITICAL",
-      thermal: "OPTIMAL",
+      name: "PUR / Polyurethane",
+      desc: "Excellent thermal insulator, but extremely vulnerable to fire. Releases toxic fumes during combustion.",
+      fire: "Critical",
+      thermal: "Optimal",
     },
     pir: {
-      title: "PIR / Polyisocyanurate",
-      description:
-        "Improved version of PUR with better flame retardancy, but still categorized as combustible.",
-      fire: "MODERATE",
-      thermal: "EXCELLENT",
+      name: "PIR / Polyisocyanurate",
+      desc: "Improved version of PUR with better flame retardancy, but still categorized as combustible.",
+      fire: "Moderate",
+      thermal: "Excellent",
     },
     rockwool: {
-      title: "Rockwool / Mineral Wool",
-      description:
-        "The only non-combustible solution. Melting point above 1,000°C. Zero toxic smoke.",
-      fire: "MAXIMUM (A1)",
-      acoustic: "BEST IN CLASS",
+      name: "Rockwool / Mineral Wool",
+      desc: "The only non-combustible solution. Melting point above 1,000°C. Zero toxic smoke.",
+      fire: "Maximum (A1)",
+      acoustic: "Best in Class",
+      badge: "Recommended",
     },
   },
   downloads: {
     title: "Resource Library",
-    description: "Access CAD details, technical sheets, and fire certificates.",
-    access: "Access Portal",
-    file1: "General Catalog 2024",
-    file2: "Fire Performance EI240",
-    file3: "DWG Installation Details",
-    file4: "U-Value Calculation Tool",
+    desc: "Access CAD details, technical sheets, and fire certificates.",
+    portalBtn: "Access Portal",
+    files: {
+      catalog: { name: "General Catalog 2024", size: "12.4 MB" },
+      fire: { name: "Fire Performance EI240", size: "3.1 MB" },
+      dwg: { name: "DWG Installation Details", size: "45.0 MB" },
+      tool: { name: "U-Value Calculation Tool", size: "1.2 MB" },
+    },
   },
   footer: {
     description:
