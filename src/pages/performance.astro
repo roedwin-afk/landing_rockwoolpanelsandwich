@@ -1,0 +1,264 @@
+---
+import { getLang, useTranslations } from "../i18n/utils";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const lang = getLang(Astro.url, base);
+const t = useTranslations(lang);
+---
+
+<BaseLayout t={t} lang={lang}>
+  <main class="performance-page">
+
+    <!-- Page Header -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-inner reveal">
+          <span class="page-label">{t.performance.label}</span>
+          <h1 class="page-title">{t.performance.title}</h1>
+          <p class="page-desc">{t.performance.desc}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Metrics Grid -->
+    <section class="metrics-section">
+      <div class="container">
+        <div class="metrics-grid">
+          {t.performance.metrics.map((metric: { value: string; unit: string; label: string; desc: string }) => (
+            <div class="metric-card reveal">
+              <div class="metric-value">
+                {metric.value}<span class="metric-unit">{metric.unit}</span>
+              </div>
+              <h3 class="metric-label">{metric.label}</h3>
+              <p class="metric-desc">{metric.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+      <div class="container">
+        <div class="features-inner">
+          <div class="features-text reveal">
+            <span class="section-label">{t.performance.features.label}</span>
+            <h2 class="section-title">{t.performance.features.title}</h2>
+            <p class="section-desc">{t.performance.features.desc}</p>
+            <a href={lang === "es" ? `${base}/es/#specs` : `${base}/#specs`} class="cta-btn">
+              {t.performance.features.cta}
+            </a>
+          </div>
+          <div class="features-list reveal">
+            {t.performance.features.items.map((item: { title: string; desc: string }) => (
+              <div class="feature-item">
+                <div class="feature-dot"></div>
+                <div>
+                  <h4 class="feature-title">{item.title}</h4>
+                  <p class="feature-desc">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</BaseLayout>
+
+<style>
+  .performance-page {
+    background-color: var(--color-bg);
+  }
+
+  /* Hero */
+  .page-hero {
+    background-color: var(--color-dark);
+    padding-block: var(--space-24);
+    padding-top: calc(var(--space-24) + var(--nav-height));
+  }
+
+  .page-hero-inner {
+    max-width: 48rem;
+  }
+  
+  .page-label {
+    display: inline-block;
+    color: var(--color-primary);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-bottom: var(--space-4);
+    background-color: rgba(249, 115, 22, 0.1);
+    border: 1px solid rgba(249, 115, 22, 0.2);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+  }
+
+  .page-title {
+    font-size: var(--text-5xl);
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: var(--space-6);
+  }
+
+  .page-desc {
+    font-size: var(--text-lg);
+    color: #94a3b8;
+    line-height: 1.7;
+    max-width: 40rem;
+  }
+
+  /* Metrics */
+  .metrics-section {
+    padding-block: var(--space-20);
+    background-color: var(--color-surface);
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  @media (min-width: 640px) {
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (min-width: 1024px) {
+    .metrics-grid { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .metric-card {
+    padding: var(--space-8);
+    border: 1px solid var(--color-border);
+    border-top: 4px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    background-color: var(--color-surface);
+  }
+
+  .metric-value {
+    font-size: var(--text-4xl);
+    font-weight: 900;
+    color: var(--color-text);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: var(--space-3);
+    font-family: var(--font-mono);
+  }
+
+  .metric-unit {
+    font-size: var(--text-lg);
+    color: var(--color-primary);
+    margin-left: var(--space-1);
+  }
+
+  .metric-label {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-2);
+  }
+
+  .metric-desc {
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  /* Features */
+  .features-section {
+    padding-block: var(--space-24);
+    background-color: var(--color-bg);
+  }
+
+  .features-inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-16);
+  }
+
+  @media (min-width: 1024px) {
+    .features-inner { grid-template-columns: 1fr 1fr; align-items: start; }
+  }
+
+  .section-label {
+    display: inline-block;
+    color: var(--color-primary);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    margin-bottom: var(--space-4);
+  }
+
+  .section-title {
+    font-size: var(--text-3xl);
+    font-weight: 900;
+    color: var(--color-text);
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-4);
+    line-height: 1.2;
+  }
+
+  .section-desc {
+    font-size: var(--text-base);
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: var(--space-8);
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: #fff;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: var(--space-4) var(--space-8);
+    border-radius: var(--radius-sm);
+    transition: background-color var(--transition-fast);
+  }
+
+  .cta-btn:hover { background-color: var(--color-primary-hover); }
+
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .feature-item {
+    display: flex;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+
+  .feature-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--radius-full);
+    background-color: var(--color-primary);
+    margin-top: 0.4rem;
+    flex-shrink: 0;
+  }
+
+  .feature-title {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: var(--space-1);
+  }
+
+  .feature-desc {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+</style>

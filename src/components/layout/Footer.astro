@@ -1,0 +1,264 @@
+---
+import { Layers, Linkedin, Twitter, Mail } from "lucide-astro";
+import NavLinks from "../ui/NavLinks.astro";
+import type { Lang } from "../../i18n/utils";
+
+interface Props {
+  t: any;
+  lang: Lang;
+}
+
+const { t, lang } = Astro.props;
+---
+
+<footer class="footer">
+  <div class="container">
+
+    <div class="footer-grid">
+
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="logo-icon">
+            <Layers size={22} />
+          </div>
+          <span class="logo-text">ROCKWOOL<span class="logo-dot">.</span></span>
+        </div>
+        <p class="brand-desc">{t.footer.desc}</p>
+        <div class="social-links">
+          <a href="#" class="social-btn" aria-label="LinkedIn"><Linkedin size={16} /></a>
+          <a href="#" class="social-btn" aria-label="Twitter"><Twitter size={16} /></a>
+          <a href="#" class="social-btn" aria-label="Email"><Mail size={16} /></a>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="footer-nav">
+        <h6 class="footer-heading">{t.footer.navTitle}</h6>
+        <NavLinks t={t} lang={lang} variant="footer" />
+      </div>
+
+      <!-- Contact -->
+      <div class="footer-contact" id="quote">
+        <h6 class="footer-heading">{t.footer.contactTitle}</h6>
+        <div class="contact-card">
+          <p class="contact-label">{t.footer.contactLabel}</p>
+          <input
+            type="email"
+            placeholder={t.footer.emailPlaceholder}
+            class="contact-input"
+          />
+          <button class="contact-btn">{t.footer.submitBtn}</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <p class="copyright">{t.footer.copyright}</p>
+      <div class="legal-links">
+        {t.footer.legal.map((item: { label: string; href: string }) => (
+          <a href={item.href} class="legal-link">{item.label}</a>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background-color: #020617;
+    color: #fff;
+    padding-block: var(--space-20);
+    border-top: 1px solid var(--color-dark-border);
+  }
+
+  /* Grid */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-12);
+    margin-bottom: var(--space-16);
+  }
+
+  @media (min-width: 768px) {
+    .footer-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: 2fr 1fr 1.5fr;
+      gap: var(--space-16);
+    }
+  }
+
+  /* Brand */
+  .footer-logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-6);
+  }
+
+  .logo-icon {
+    background-color: var(--color-primary);
+    color: #fff;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-text {
+    font-size: var(--text-xl);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    color: #fff;
+  }
+
+  .logo-dot { color: var(--color-primary); }
+
+  .brand-desc {
+    font-size: var(--text-sm);
+    color: #94a3b8;
+    line-height: 1.7;
+    max-width: 22rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .social-links {
+    display: flex;
+    gap: var(--space-3);
+  }
+
+  .social-btn {
+    width: 2.25rem;
+    height: 2.25rem;
+    background-color: var(--color-dark-surface);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    transition:
+      background-color var(--transition-fast),
+      color var(--transition-fast);
+  }
+
+  .social-btn:hover {
+    background-color: var(--color-primary);
+    color: #fff;
+  }
+
+  /* Headings */
+  .footer-heading {
+    font-size: var(--text-xs);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--color-primary);
+    margin-bottom: var(--space-6);
+  }
+
+  /* Contact */
+  .contact-card {
+    background-color: var(--color-dark-surface);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-dark-border);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .contact-label {
+    font-size: var(--text-xs);
+    color: #cbd5e1;
+  }
+
+  .contact-input {
+    background-color: #020617;
+    border: 1px solid var(--color-dark-border);
+    color: #fff;
+    font-size: var(--text-sm);
+    font-family: var(--font-sans);
+    padding: var(--space-3);
+    border-radius: var(--radius-sm);
+    outline: none;
+    transition: border-color var(--transition-fast);
+  }
+
+  .contact-input::placeholder { color: #475569; }
+
+  .contact-input:focus {
+    border-color: var(--color-primary);
+  }
+
+  .contact-btn {
+    background-color: var(--color-primary);
+    color: #fff;
+    font-size: var(--text-xs);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: var(--space-3);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+    font-family: var(--font-sans);
+    border: none;
+  }
+
+  .contact-btn:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  /* Bottom */
+  .footer-bottom {
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-dark-border);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    align-items: center;
+    text-align: center;
+  }
+
+  @media (min-width: 768px) {
+    .footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      text-align: left;
+    }
+  }
+
+  .copyright {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #475569;
+  }
+
+  .legal-links {
+    display: flex;
+    gap: var(--space-6);
+  }
+
+  .legal-link {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #475569;
+    transition: color var(--transition-fast);
+  }
+
+  .legal-link:hover { color: #94a3b8; }
+</style>

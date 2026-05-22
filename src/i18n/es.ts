@@ -7,6 +7,7 @@ export const es: TranslationKeys = {
     specs: "Datos Técnicos",
     downloads: "Descargas",
     quote: "Solicitar Presupuesto",
+    contact: "Contact",
   },
   hero: {
     badge: "Protección contra Incendios Industrial",
@@ -90,22 +91,51 @@ export const es: TranslationKeys = {
     },
   },
   footer: {
-    description:
-      "Proveedor líder de paneles sándwich con núcleo de lana mineral certificada para proyectos industriales globales. Nos especializamos en seguridad contra incendios y longevidad estructural.",
-    network: "Red",
-    contact: "Contáctanos",
-    inquiry: "Consulta técnica rápida:",
-    placeholder: "Email Profesional",
-    submit: "Enviar",
-    copyright:
-      "© 2024 Rockwool Panel Sandwich Ltd. Todos los derechos técnicos reservados.",
-    privacy: "Política de Privacidad",
-    terms: "Términos Técnicos",
-    compliance: "Cumplimiento",
+    desc: "Proveedor líder de paneles sándwich de núcleo de lana mineral certificada para proyectos industriales globales. Nos enfocamos en seguridad contra incendios y longevidad estructural.",
+    navTitle: "Navegación",
+    networkTitle: "Red",
+    contactTitle: "Contáctanos",
+    contactLabel: "Consulta técnica rápida:",
+    emailPlaceholder: "Email profesional",
+    submitBtn: "Enviar",
+    copyright: "© 2024 Rockwool Panel Sandwich Ltd. Todos los derechos técnicos reservados.",
+    legal: [
+      { label: "Política de Privacidad", href: "#" },
+      { label: "Términos Técnicos", href: "#" },
+      { label: "Cumplimiento", href: "#" },
+    ],
   },
   meta: {
     title: "Panel Sándwich Rockwool | Portal de Ingeniería y Técnico",
     description:
       "Paneles sándwich de núcleo mineral no combustible con clasificación de fuego A1/A2. Datos técnicos, certificaciones y recursos CAD para ingenieros.",
+  },
+  notFound: {
+    title: "Página no encontrada",
+    desc: "La página que buscas no existe o ha sido movida.",
+    btn: "Volver al inicio",
+  },
+  performance: {
+    label: "Rendimiento Técnico",
+    title: "Datos de Ingeniería y Rendimiento Térmico",
+    desc: "Especificaciones técnicas detalladas para paneles sándwich de lana mineral Rockwool utilizados en edificios industriales y públicos.",
+    metrics: [
+      { value: "0.038", unit: "W/m·K", label: "Conductividad Térmica", desc: "Valor lambda estable en todo el rango de espesores." },
+      { value: "1000", unit: "°C", label: "Punto de Fusión", desc: "Núcleo no combustible con clasificación de fuego Euroclass A1." },
+      { value: "240", unit: "min", label: "Clasificación Máx. Fuego", desc: "Integridad e aislamiento EI 240 bajo EN 1363-1." },
+      { value: "200", unit: "mm", label: "Espesor Máximo", desc: "Disponible de 50mm a 200mm para cualquier objetivo de valor U." },
+    ],
+    features: {
+      label: "Por qué importa",
+      title: "Diseñado para los entornos más exigentes",
+      desc: "Los paneles Rockwool son la única solución de panel sándwich clasificada como no combustible. Se utilizan en hospitales, centros logísticos, cámaras frigoríficas y salas blancas en todo el mundo.",
+      cta: "Ver tabla de especificaciones completa",
+      items: [
+        { title: "Clasificación Euroclass A1 / A2", desc: "La más alta clasificación de fuego bajo EN 13501-1. Sin contribución al fuego, sin humo, sin gotas ardientes." },
+        { title: "Rendimiento acústico", desc: "El núcleo de fibra mineral proporciona un aislamiento acústico superior en comparación con alternativas PUR o PIR." },
+        { title: "Estabilidad dimensional", desc: "Sin puentes térmicos. El núcleo permanece estable bajo ciclos térmicos repetidos de -30°C a +250°C." },
+        { title: "Líneas de producción continua", desc: "La fabricación automatizada garantiza densidad y unión consistentes en cada panel." },
+      ],
+    },
   },
 };

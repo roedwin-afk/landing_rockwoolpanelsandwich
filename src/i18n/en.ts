@@ -5,6 +5,7 @@ export const en = {
     specs: "Technical Data",
     downloads: "Downloads",
     quote: "Request Quote",
+    contact: "Contact",
   },
   hero: {
     badge: "Industrial Fire Protection",
@@ -88,22 +89,52 @@ export const en = {
     },
   },
   footer: {
-    description:
-      "Leading provider of certified mineral wool core sandwich panels for global industrial projects. We focus on fire safety and structural longevity.",
-    network: "Network",
-    contact: "Contact Us",
-    inquiry: "Quick technical inquiry:",
-    placeholder: "Professional Email",
-    submit: "Submit",
+    desc: "Leading provider of certified mineral wool core sandwich panels for global industrial projects. We focus on fire safety and structural longevity.",
+    navTitle: "Navigation",
+    networkTitle: "Network",
+    contactTitle: "Contact Us",
+    contactLabel: "Quick technical inquiry:",
+    emailPlaceholder: "Professional Email",
+    submitBtn: "Submit",
     copyright: "© 2024 Rockwool Panel Sandwich Ltd. All Technical Rights Reserved.",
-    privacy: "Privacy Policy",
-    terms: "Technical Terms",
-    compliance: "Compliance",
+    legal: [
+      { label: "Privacy Policy", href: "#" },
+      { label: "Technical Terms", href: "#" },
+      { label: "Compliance", href: "#" },
+    ],
   },
   meta: {
     title: "Rockwool Sandwich Panel | Engineering & Technical Portal",
     description:
       "Non-combustible mineral core sandwich panels with A1/A2 fire rating. Technical data, certifications and CAD resources for engineers.",
+  },
+  notFound: {
+    title: "Page not found",
+    desc: "The page you are looking for does not exist or has been moved.",
+    btn: "Back to Home",
+  },
+  performance: {
+    label: "Technical Performance",
+    title: "Engineering Data & Thermal Performance",
+    desc: "Detailed technical specifications for Rockwool mineral wool sandwich panels used in industrial and public building applications.",
+    metrics: [
+      { value: "0.038", unit: "W/m·K", label: "Thermal Conductivity", desc: "Stable lambda value across the full thickness range." },
+      { value: "1000", unit: "°C", label: "Melting Point", desc: "Non-combustible core with Euroclass A1 fire rating." },
+      { value: "240", unit: "min", label: "Max Fire Rating", desc: "EI 240 integrity and insulation under EN 1363-1." },
+      { value: "200", unit: "mm", label: "Max Thickness", desc: "Available from 50mm to 200mm for any U-value target." },
+    ],
+    features: {
+      label: "Why it matters",
+      title: "Built for the most demanding environments",
+      desc: "Rockwool panels are the only sandwich panel solution classified as non-combustible. They are used in hospitals, logistics hubs, cold stores, and clean rooms worldwide.",
+      cta: "View full spec table",
+      items: [
+        { title: "Euroclass A1 / A2 rated", desc: "The highest fire classification under EN 13501-1. No contribution to fire, no smoke, no burning droplets." },
+        { title: "Acoustic performance", desc: "Mineral fiber core provides superior sound insulation compared to PUR or PIR alternatives." },
+        { title: "Dimensional stability", desc: "No thermal bridging. Core remains stable under repeated thermal cycling from -30°C to +250°C." },
+        { title: "Continuous production lines", desc: "Automated manufacturing ensures consistent density and bonding across every panel." },
+      ],
+    },
   },
 } as const;
 
