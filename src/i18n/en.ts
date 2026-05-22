@@ -137,6 +137,58 @@ export const en = {
       ],
     },
   },
+  comparisonPage: {
+    label: "Material Comparison",
+    title: "PUR vs PIR vs Rockwool: The Full Picture",
+    desc: "An in-depth technical comparison of the three main sandwich panel core materials used in industrial construction.",
+    pur: {
+      name: "PUR / Polyurethane",
+      rating: "Fire Class E — Combustible",
+      desc: "The most common core material due to its excellent thermal performance and low cost. However, it poses serious fire safety risks.",
+      pros: ["Best thermal conductivity (λ ≈ 0.022 W/m·K)", "Lightweight and easy to handle", "Low material cost"],
+      cons: ["Burns rapidly and releases toxic HCN gas", "Classified Euroclass E — highest risk", "Not permitted in high-occupancy buildings"],
+    },
+    pir: {
+      name: "PIR / Polyisocyanurate",
+      rating: "Fire Class C/D — Combustible",
+      desc: "An improved polymer with better fire resistance than PUR. Still classified as combustible but widely used in low-risk applications.",
+      pros: ["Good thermal performance (λ ≈ 0.023 W/m·K)", "Better fire retardancy than PUR", "Widely available"],
+      cons: ["Still combustible under sustained fire", "Produces smoke and toxic gases", "Not suitable for hospitals or public buildings"],
+    },
+    rockwool: {
+      name: "Rockwool / Mineral Wool",
+      rating: "Fire Class A1 — Non-Combustible",
+      badge: "Recommended",
+      desc: "The only truly non-combustible sandwich panel core. Made from volcanic basalt rock, it does not burn, melt, or produce toxic smoke.",
+      pros: [
+        "Euroclass A1 — does not contribute to fire",
+        "Melting point above 1,000°C",
+        "Zero toxic smoke or burning droplets",
+        "Superior acoustic insulation",
+        "Required for hospitals, schools, and public buildings",
+      ],
+    },
+    table: {
+      label: "Side by Side",
+      title: "Technical Comparison Table",
+      feature: "Property",
+      rows: [
+        { feature: "Fire Classification", pur: "Euroclass E", pir: "Euroclass C/D", rockwool: "Euroclass A1" },
+        { feature: "Thermal Conductivity", pur: "≈ 0.022 W/m·K", pir: "≈ 0.023 W/m·K", rockwool: "≈ 0.038 W/m·K" },
+        { feature: "Toxic Smoke", pur: "Yes (HCN)", pir: "Yes", rockwool: "None" },
+        { feature: "Max Fire Rating", pur: "EI 15", pir: "EI 30", rockwool: "EI 240" },
+        { feature: "Acoustic Performance", pur: "Low", pir: "Low", rockwool: "High" },
+        { feature: "Melting Point", pur: "~200°C", pir: "~250°C", rockwool: ">1,000°C" },
+        { feature: "Permitted in Hospitals", pur: "No", pir: "No", rockwool: "Yes" },
+      ],
+    },
+    cta: {
+      title: "Ready to specify Rockwool?",
+      desc: "Talk to our technical team to find the right panel thickness and fire rating for your project.",
+      btnContact: "Contact Us",
+      btnSpecs: "View Performance Data",
+    },
+  },
 } as const;
 
 export type DeepString<T> = {
