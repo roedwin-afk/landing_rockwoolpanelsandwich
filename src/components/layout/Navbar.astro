@@ -5,6 +5,9 @@ import { getAlternatePath } from "../../i18n/utils";
 import NavLinks from "../ui/NavLinks.astro";
 import MobileMenu from "./MobileMenu.astro";
 import { Globe, Layers, AlignJustify, BadgeCheck } from "lucide-astro";
+import { Image } from "astro:assets";
+
+import logo from "../../assets/logo.svg";
 
 interface Props {
   t: TranslationKeys;
@@ -13,11 +16,12 @@ interface Props {
 
 const { t, lang } = Astro.props;
 const base = import.meta.env.BASE_URL;
-const alternatePath = lang === "en" ? `${base}es/` : `${base}`;
 const prefix = lang === "es" ? `${base}es/` : `${base}`;
 const alternateLang = lang === "en" ? "ES" : "EN";
 
-
+const currentPath = Astro.url.pathname.replace(base, "").replace(/^es\//, "");
+const alternatePath =
+    lang === "en" ? `${base}es/${currentPath}` : `${base}${currentPath}`;
 ---
 
 <header class="topbar">
@@ -41,15 +45,26 @@ const alternateLang = lang === "en" ? "ES" : "EN";
         <Layers size={22} color="white" />
       </div>
       <div class="navbar__logo-text">
-        <span class="navbar__logo-name">ROCKWOOL<span class="navbar__logo-dot">.</span></span>
-        <span class="navbar__logo-tagline">Sandwich Panel Expert</span>
+        <!-- <span class="navbar__logo-name">ROCKWOOL<span class="navbar__logo-dot">.</span></span> -->
+         <Image
+                src={logo}
+                alt="Panel sándwich para techo industrial"
+                width={200}
+                height={70}
+                class="navbar__logo-img"
+                format="webp"
+                quality={95}
+                loading="eager"
+                format="svg"
+            />
+        <!-- <span class="navbar__logo-tagline">Sandwich Panel Expert</span> -->
       </div>
     </a>
 
     <!-- Desktop nav -->
     <div class="navbar__desktop">
       <NavLinks t={t} lang={lang} variant="navbar" />
-      <a href={`${prefix}#quote`} class="navbar__cta">
+      <a href={`${prefix}contact`} class="navbar__cta">
         {t.nav.quote}
       </a>
       <a href={alternatePath} class="navbar__lang">

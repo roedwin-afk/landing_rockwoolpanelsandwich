@@ -2,6 +2,9 @@
 import { Layers, Linkedin, Twitter, Mail } from "lucide-astro";
 import NavLinks from "../ui/NavLinks.astro";
 import type { Lang } from "../../i18n/utils";
+import { Image } from "astro:assets";
+
+import logo from "../../assets/logo.svg";
 
 interface Props {
   t: any;
@@ -22,7 +25,17 @@ const { t, lang } = Astro.props;
           <div class="logo-icon">
             <Layers size={22} />
           </div>
-          <span class="logo-text">ROCKWOOL<span class="logo-dot">.</span></span>
+          <Image
+                src={logo}
+                alt="Panel sándwich para techo industrial"
+                width={250}
+                height={70}
+                class="footer__logo-img"
+                format="webp"
+                quality={95}
+                loading="eager"
+                format="svg"
+            />
         </div>
         <p class="brand-desc">{t.footer.desc}</p>
         <div class="social-links">
@@ -102,6 +115,13 @@ const { t, lang } = Astro.props;
     align-items: center;
     gap: var(--space-3);
     margin-bottom: var(--space-6);
+  }
+
+  .footer__logo-img {
+    display: block;
+    /* height: 4.5rem; */
+    width: auto;
+    filter: brightness(0) invert(1);
   }
 
   .logo-icon {

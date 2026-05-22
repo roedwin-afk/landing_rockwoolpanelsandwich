@@ -8,6 +8,7 @@ export const es: TranslationKeys = {
     downloads: "Descargas",
     quote: "Solicitar Presupuesto",
     contact: "Contact",
+    blog: "Blog",
   },
   hero: {
     badge: "Protección contra Incendios Industrial",

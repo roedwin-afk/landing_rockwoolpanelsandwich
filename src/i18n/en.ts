@@ -6,6 +6,7 @@ export const en = {
     downloads: "Downloads",
     quote: "Request Quote",
     contact: "Contact",
+    blog: "Blog",
   },
   hero: {
     badge: "Industrial Fire Protection",
