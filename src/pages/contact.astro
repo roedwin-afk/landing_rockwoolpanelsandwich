@@ -1,0 +1,641 @@
+---
+import { getLang, useTranslations } from "../i18n/utils";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Mail, Phone, MapPin, Clock } from "lucide-astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+const lang = getLang(Astro.url, base);
+const t = useTranslations(lang);
+---
+
+<BaseLayout t={t} lang={lang}>
+  <main class="contact-page">
+    <!-- Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <div class="page-hero-inner reveal">
+          <span class="page-label">{t.contact.label}</span>
+          <h1 class="page-title">{t.contact.title}</h1>
+          <p class="page-desc">{t.contact.desc}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-grid">
+          <!-- Info -->
+          <div class="contact-info reveal">
+            <h2 class="info-title">{t.contact.infoTitle}</h2>
+            <p class="info-desc">{t.contact.infoDesc}</p>
+
+            <div class="info-items">
+              <div class="info-item">
+                <div class="info-icon"><Phone size={18} /></div>
+                <div>
+                  <span class="info-label">{t.contact.info.phone.label}</span>
+                  <span class="info-value">{t.contact.info.phone.value}</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <div class="info-icon"><Mail size={18} /></div>
+                <div>
+                  <span class="info-label">{t.contact.info.email.label}</span>
+                  <span class="info-value">{t.contact.info.email.value}</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <div class="info-icon"><MapPin size={18} /></div>
+                <div>
+                  <span class="info-label">{t.contact.info.address.label}</span>
+                  <span class="info-value">{t.contact.info.address.value}</span>
+                </div>
+              </div>
+              <div class="info-item">
+                <div class="info-icon"><Clock size={18} /></div>
+                <div>
+                  <span class="info-label">{t.contact.info.hours.label}</span>
+                  <span class="info-value">{t.contact.info.hours.value}</span>
+                </div>
+              </div>
+            </div>
+            <!-- Map -->
+            <div
+              class="map-preview"
+              id="map-trigger"
+              title={t.contact.map.clickToExpand}
+            >
+              <div id="map-mini" class="map-mini"></div>
+              <div class="map-overlay">
+                <span class="map-hint">{t.contact.map.clickToExpand}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Zoho Form -->
+          <div class="contact-form-wrapper reveal">
+            <div class="form-card">
+              <h3 class="form-title">{t.contact.form.title}</h3>
+              <form
+                action="https://forms.zohopublic.com/promaica/form/SolicituddeCotizacin/formperma/0G7mUvm1mHqTMr77oTQpng90acA6JYYKZtboiNDls70/htmlRecords/submit"
+                name="form"
+                id="zoho-form"
+                method="POST"
+                accept-charset="UTF-8"
+                enctype="multipart/form-data"
+              >
+                <input type="hidden" name="zf_referrer_name" value="" />
+                <input type="hidden" name="zf_redirect_url" value="" />
+                <input type="hidden" name="zc_gad" value="" />
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label">{t.contact.form.firstName}</label>
+                    <input
+                      type="text"
+                      maxlength="255"
+                      name="Name_First"
+                      class="form-input"
+                      placeholder={t.contact.form.firstNamePlaceholder}
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">{t.contact.form.lastName}</label>
+                    <input
+                      type="text"
+                      maxlength="255"
+                      name="Name_Last"
+                      class="form-input"
+                      placeholder={t.contact.form.lastNamePlaceholder}
+                    />
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">{t.contact.form.email}</label>
+                  <input
+                    type="text"
+                    maxlength="255"
+                    name="Email"
+                    class="form-input"
+                    placeholder={t.contact.form.emailPlaceholder}
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">{t.contact.form.phone}</label>
+                  <input
+                    type="text"
+                    maxlength="20"
+                    name="PhoneNumber_countrycode"
+                    class="form-input"
+                    placeholder={t.contact.form.phonePlaceholder}
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">{t.contact.form.message}</label>
+                  <textarea
+                    name="MultiLine"
+                    maxlength="65535"
+                    class="form-input form-textarea"
+                    placeholder={t.contact.form.messagePlaceholder}></textarea>
+                </div>
+
+                <button type="submit" class="form-submit"
+                  >{t.contact.form.submit}</button
+                >
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <div class="map-modal" id="map-modal">
+      <div class="modal-backdrop" id="modal-backdrop"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">{t.contact.map.modalTitle}</h4>
+          <button class="modal-close" id="modal-close">✕</button>
+        </div>
+        <div id="map-large" class="map-large"></div>
+        <div class="modal-footer">
+          <a
+            href="https://maps.google.com/?q=Avenida+Presidente+Masaryk+61+Polanco+Mexico+City"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="gmaps-btn"
+          >
+            {t.contact.map.openGmaps}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <script>
+      const LAT = 19.4328;
+      const LNG = -99.1772;
+
+      let miniMap: any = null;
+      let largeMap: any = null;
+
+      function initMini() {
+        const el = document.getElementById("map-mini");
+        if (!el || miniMap) return;
+        // @ts-ignore
+        miniMap = L.map("map-mini", {
+          center: [LAT, LNG],
+          zoom: 15,
+          zoomControl: false,
+          scrollWheelZoom: false,
+          dragging: false,
+          doubleClickZoom: false,
+          attributionControl: false,
+        });
+        // @ts-ignore
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(
+          miniMap,
+        );
+        // @ts-ignore
+        L.marker([LAT, LNG]).addTo(miniMap);
+        miniMap.invalidateSize();
+      }
+
+      function initLarge() {
+        const el = document.getElementById("map-large");
+        if (!el || largeMap) return;
+        // @ts-ignore
+        largeMap = L.map("map-large", {
+          center: [LAT, LNG],
+          zoom: 16,
+        });
+        // @ts-ignore
+        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+          attribution: "© OpenStreetMap contributors",
+        }).addTo(largeMap);
+        // @ts-ignore
+        L.marker([LAT, LNG])
+          .addTo(largeMap)
+          .bindPopup("Avenida Presidente Masaryk No. 61, Polanco, CDMX")
+          .openPopup();
+        largeMap.invalidateSize();
+      }
+
+      function openModal() {
+        const modal = document.getElementById("map-modal");
+        if (!modal) return;
+        modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+        setTimeout(() => {
+          initLarge();
+          if (largeMap) largeMap.invalidateSize();
+        }, 150);
+      }
+
+      function closeModal() {
+        const modal = document.getElementById("map-modal");
+        if (!modal) return;
+        modal.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      function setup() {
+        // Reset para view transitions
+        miniMap = null;
+        largeMap = null;
+
+        // Espera a que Leaflet esté disponible
+        const wait = setInterval(() => {
+          // @ts-ignore
+          if (typeof L === "undefined") return;
+          clearInterval(wait);
+          // Pequeño delay para asegurar que el DOM está pintado
+          setTimeout(initMini, 50);
+        }, 50);
+
+        document
+          .getElementById("map-trigger")
+          ?.addEventListener("click", openModal);
+        document
+          .getElementById("modal-close")
+          ?.addEventListener("click", closeModal);
+        document
+          .getElementById("modal-backdrop")
+          ?.addEventListener("click", closeModal);
+
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closeModal();
+        });
+      }
+
+      document.addEventListener("astro:page-load", setup);
+    </script>
+  </main>
+
+  <style>
+    .contact-page {
+      background-color: var(--color-bg);
+    }
+
+    .page-hero {
+      background-color: var(--color-dark);
+      padding-block: var(--space-24);
+      padding-top: calc(var(--space-24) + var(--nav-height));
+    }
+
+    .page-hero-inner {
+      max-width: 48rem;
+    }
+
+    .page-label {
+      display: inline-block;
+      color: var(--color-primary);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      margin-bottom: var(--space-4);
+      background-color: rgba(249, 115, 22, 0.1);
+      border: 1px solid rgba(249, 115, 22, 0.2);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+    }
+
+    .page-title {
+      font-size: var(--text-5xl);
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      margin-bottom: var(--space-6);
+    }
+
+    .page-desc {
+      font-size: var(--text-lg);
+      color: #94a3b8;
+      line-height: 1.7;
+    }
+
+    .contact-section {
+      padding-block: var(--space-24);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-16);
+    }
+
+    @media (min-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: 1fr 1.5fr;
+        align-items: start;
+      }
+    }
+
+    /* Info */
+    .info-title {
+      font-size: var(--text-2xl);
+      font-weight: 900;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-4);
+    }
+
+    .info-desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.7;
+      margin-bottom: var(--space-10);
+    }
+
+    .info-items {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-4);
+    }
+
+    .info-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      background-color: rgba(249, 115, 22, 0.1);
+      color: var(--color-primary);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-label {
+      display: block;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-subtle);
+      margin-bottom: var(--space-1);
+    }
+
+    .info-value {
+      display: block;
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    /* Form */
+    .form-card {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-10);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .form-title {
+      font-size: var(--text-xl);
+      font-weight: 800;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+
+    .form-label {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-muted);
+    }
+
+    .form-input {
+      background-color: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+      color: var(--color-text);
+      font-size: var(--text-sm);
+      font-family: var(--font-sans);
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+      outline: none;
+      transition: border-color var(--transition-fast);
+      width: 100%;
+    }
+
+    .form-input:focus {
+      border-color: var(--color-primary);
+    }
+    .form-input::placeholder {
+      color: var(--color-text-subtle);
+    }
+
+    .form-textarea {
+      resize: vertical;
+      min-height: 8rem;
+    }
+
+    .form-submit {
+      background-color: var(--color-primary);
+      color: #fff;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      transition: background-color var(--transition-fast);
+    }
+
+    .form-submit:hover {
+      background-color: var(--color-primary-hover);
+    }
+
+    /* Map preview */
+    .map-preview {
+      margin-top: var(--space-8);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid var(--color-border);
+      cursor: pointer;
+      position: relative;
+      height: 180px;
+      z-index: 0;
+    }
+
+    .map-mini {
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .map-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: var(--space-3);
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.35) 0%,
+        transparent 60%
+      );
+      transition: background var(--transition-fast);
+    }
+
+    .map-preview:hover .map-overlay {
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.5) 0%,
+        transparent 60%
+      );
+    }
+
+    .map-hint {
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #fff;
+      background-color: rgba(0, 0, 0, 0.45);
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      backdrop-filter: blur(4px);
+    }
+
+    /* Modal */
+    .map-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-4);
+    }
+
+    .map-modal.open {
+      display: flex;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-content {
+      position: relative;
+      z-index: 1;
+      background-color: var(--color-surface);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      width: 100%;
+      max-width: 52rem;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-4) var(--space-6);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .modal-title {
+      font-size: var(--text-sm);
+      font-weight: 700;
+      color: var(--color-text);
+    }
+
+    .modal-close {
+      width: 2rem;
+      height: 2rem;
+      border-radius: var(--radius-full);
+      background-color: var(--color-surface-alt);
+      border: none;
+      cursor: pointer;
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color var(--transition-fast);
+    }
+
+    .modal-close:hover {
+      background-color: var(--color-border);
+    }
+
+    .map-large {
+      width: 100%;
+      height: 400px;
+    }
+
+    .modal-footer {
+      padding: var(--space-4) var(--space-6);
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .gmaps-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      background-color: var(--color-primary);
+      color: #fff;
+      font-size: var(--text-xs);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: var(--space-3) var(--space-6);
+      border-radius: var(--radius-sm);
+      transition: background-color var(--transition-fast);
+    }
+
+    .gmaps-btn:hover {
+      background-color: var(--color-primary-hover);
+    }
+  </style>
+</BaseLayout>

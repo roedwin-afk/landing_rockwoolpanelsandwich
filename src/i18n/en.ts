@@ -189,6 +189,38 @@ export const en = {
       btnSpecs: "View Performance Data",
     },
   },
+  contact: {
+    label: "Contact an Expert",
+    title: "Talk to Our Technical Team",
+    desc: "Send us your project blueprints or requirements. Our technical team will provide a comprehensive quote and installation plan within 24 hours.",
+    infoTitle: "Contact Information",
+    infoDesc: "Reach us by phone, email, or fill out the form and we will respond within 24 hours.",
+    info: {
+      phone: { label: "Direct Line", value: "+52 55 9990 3546" },
+      email: { label: "Email Enquiries", value: "sales@buildinginsulationpanels.com" },
+      address: { label: "Headquarters", value: "Avenida Presidente Masaryk No. 61, Int. 901, Polanco V Sección, C.P. 11560, Miguel Hidalgo, Mexico City, Mexico" },
+      hours: { label: "Response Time", value: "Within 24 business hours" },
+    },
+    form: {
+      title: "Request a Quote",
+      firstName: "First Name",
+      firstNamePlaceholder: "John",
+      lastName: "Last Name",
+      lastNamePlaceholder: "Smith",
+      email: "Email",
+      emailPlaceholder: "john@company.com",
+      phone: "Phone",
+      phonePlaceholder: "+1 555 000 0000",
+      message: "Project Details",
+      messagePlaceholder: "Describe your project requirements, dimensions, or any technical questions...",
+      submit: "Send Request",
+    },
+    map: {
+      clickToExpand: "Click to view map",
+      modalTitle: "Avenida Presidente Masaryk No. 61, Polanco, CDMX",
+      openGmaps: "Open in Google Maps",
+    },
+  },
 } as const;
 
 export type DeepString<T> = {
