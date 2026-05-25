@@ -22,6 +22,9 @@ const alternateLang = lang === "en" ? "ES" : "EN";
 const currentPath = Astro.url.pathname.replace(base, "").replace(/^es\//, "");
 const alternatePath =
     lang === "en" ? `${base}es/${currentPath}` : `${base}${currentPath}`;
+
+
+console.log("Navbar props:", { lang, alternateLang, alternatePath });
 ---
 
 <header class="topbar">
@@ -40,7 +43,7 @@ const alternatePath =
   <div class="container navbar__inner">
 
     <!-- Logo -->
-    <a href={`${prefix}/`} class="navbar__logo">
+    <a href={`${prefix}`} class="navbar__logo">
       <div class="navbar__logo-icon">
         <Layers size={22} color="white" />
       </div>
@@ -52,7 +55,6 @@ const alternatePath =
                 width={200}
                 height={70}
                 class="navbar__logo-img"
-                format="webp"
                 quality={95}
                 loading="eager"
                 format="svg"

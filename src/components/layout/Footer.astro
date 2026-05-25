@@ -1,13 +1,16 @@
 ---
 import { Layers, Linkedin, Twitter, Mail } from "lucide-astro";
 import NavLinks from "../ui/NavLinks.astro";
+import type { TranslationKeys } from "../../i18n/en";
 import type { Lang } from "../../i18n/utils";
 import { Image } from "astro:assets";
 
 import logo from "../../assets/logo.svg";
 
+
+
 interface Props {
-  t: any;
+  t: TranslationKeys;
   lang: Lang;
 }
 
@@ -31,7 +34,6 @@ const { t, lang } = Astro.props;
                 width={250}
                 height={70}
                 class="footer__logo-img"
-                format="webp"
                 quality={95}
                 loading="eager"
                 format="svg"
