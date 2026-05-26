@@ -16,8 +16,15 @@ const fireFileName = lang === 'es'
   ? 'ficha-tecnica-EI240.pdf' 
   : 'technical-datasheet-EI240.pdf';
 
+const dwgFileName = lang === 'es'
+  ? 'detalles-instalacion.pdf'
+  : 'installation-details.pdf';
+
+const dwgFileUrl = `${base}files/${dwgFileName}`;
+
 const catalogFileUrl = `${base}files/${catalogFileName}`;
 const fireFileUrl = `${base}files/${fireFileName}`;
+
 
 const labels = lang === 'es' ? {
   modalTitle: "Calculadora de U-Value",
@@ -60,10 +67,10 @@ const labels = lang === 'es' ? {
         <h2 class="section-title">{t.downloads.title}</h2>
         <p class="section-desc">{t.downloads.desc}</p>
       </div>
-      <a href="#quote" class="portal-btn">
+      <div class="portal-btn">
         {t.downloads.portalBtn}
         <span class="lock-icon">🔒</span>
-      </a>
+      </div>
     </div>
 
     <div class="downloads-grid reveal">
@@ -86,14 +93,14 @@ const labels = lang === 'es' ? {
         <span class="file-tag">PDF</span>
       </a>
 
-      <div class="download-card">
+      <a href={dwgFileUrl} download class="download-card" target="_blank" rel="noopener">
         <div class="file-icon cad"><FileCode size={28} /></div>
         <div class="file-info">
           <h4 class="file-name">{t.downloads.files.dwg.name}</h4>
           <span class="file-meta">{t.downloads.files.dwg.size}</span>
         </div>
         <span class="file-tag">DWG</span>
-      </div>
+      </a>
 
       <button id="open-calculator" class="download-card download-card--btn">
         <div class="file-icon tool"><Calculator size={28} /></div>
