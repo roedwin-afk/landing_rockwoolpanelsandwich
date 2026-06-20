@@ -99,7 +99,7 @@ export const es: TranslationKeys = {
     contactLabel: "Consulta técnica rápida:",
     emailPlaceholder: "Email profesional",
     submitBtn: "Enviar",
-    copyright: "© 2024 Rockwool Panel Sandwich Ltd. Todos los derechos técnicos reservados.",
+    copyright: "Rockwool Panel Sandwich Ltd. Todos los derechos técnicos reservados.",
     legal: [
       { label: "Política de Privacidad", href: "#" },
       { label: "Términos Técnicos", href: "#" },

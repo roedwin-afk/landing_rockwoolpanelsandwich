@@ -29,11 +29,11 @@ const alternatePath =
 <header class="topbar">
   <div class="container topbar__inner">
     <div class="topbar__left">
-      <span><BadgeCheck size={14} /> CE Certified</span>
-      <span><Globe size={14} /> Global Shipping</span>
+      <span><BadgeCheck size={14} />{lang === "en" ? "CE Certified": "Certificado CE"}</span>
+      <span><Globe size={14} /> {lang === "en" ? "Global Shipping": "Envíos globales"}</span>
     </div>
     <div class="topbar__right">
-      Technical Support: <strong>+52 55 9990 3546</strong>
+      {lang === "en" ? "Technical Support": "Apoyo técnico"}: <strong>+52 55 9990 3546</strong>
     </div>
   </div>
 </header>

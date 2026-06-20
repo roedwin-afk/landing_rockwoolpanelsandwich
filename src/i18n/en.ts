@@ -97,7 +97,7 @@ export const en = {
     contactLabel: "Quick technical inquiry:",
     emailPlaceholder: "Professional Email",
     submitBtn: "Submit",
-    copyright: "© 2024 Rockwool Panel Sandwich Ltd. All Technical Rights Reserved.",
+    copyright: "Rockwool Panel Sandwich Ltd. All Technical Rights Reserved.",
     legal: [
       { label: "Privacy Policy", href: "#" },
       { label: "Technical Terms", href: "#" },

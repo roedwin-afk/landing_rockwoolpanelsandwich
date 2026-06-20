@@ -7,8 +7,6 @@ import { Image } from "astro:assets";
 
 import logo from "../../assets/logo.svg";
 
-
-
 interface Props {
   t: TranslationKeys;
   lang: Lang;
@@ -19,9 +17,7 @@ const { t, lang } = Astro.props;
 
 <footer class="footer">
   <div class="container">
-
     <div class="footer-grid">
-
       <!-- Brand -->
       <div class="footer-brand">
         <div class="footer-logo">
@@ -29,21 +25,37 @@ const { t, lang } = Astro.props;
             <Layers size={22} />
           </div>
           <Image
-                src={logo}
-                alt="Panel sándwich para techo industrial"
-                width={250}
-                height={70}
-                class="footer__logo-img"
-                quality={95}
-                loading="eager"
-                format="svg"
-            />
+            src={logo}
+            alt="Panel sándwich para techo industrial"
+            width={250}
+            height={70}
+            class="footer__logo-img"
+            quality={95}
+            loading="eager"
+            format="svg"
+          />
         </div>
         <p class="brand-desc">{t.footer.desc}</p>
         <div class="social-links">
-          <a href="#" class="social-btn" aria-label="LinkedIn"><Linkedin size={16} /></a>
-          <a href="#" class="social-btn" aria-label="Twitter"><Twitter size={16} /></a>
-          <a href="#" class="social-btn" aria-label="Email"><Mail size={16} /></a>
+          <a href="#" class="social-btn" aria-label="LinkedIn"
+            ><Linkedin size={16} /></a
+          >
+          <a href="#" class="social-btn" aria-label="Twitter"
+            ><svg
+              class="icon-x"
+              viewBox="0 0 24 24"
+              width="16"
+              height="16"
+              fill="currentColor"
+            >
+              <path
+                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+              ></path>
+            </svg></a
+          >
+          <a href="#" class="social-btn" aria-label="Email"
+            ><Mail size={16} /></a
+          >
         </div>
       </div>
 
@@ -66,21 +78,28 @@ const { t, lang } = Astro.props;
           <button class="contact-btn">{t.footer.submitBtn}</button>
         </div>
       </div>
-
     </div>
 
     <!-- Bottom bar -->
     <div class="footer-bottom">
-      <p class="copyright">{t.footer.copyright}</p>
+      © <span class="copyright" id="currentYear"> </span><span class="copyright">{t.footer.copyright}</span>
       <div class="legal-links">
-        {t.footer.legal.map((item: { label: string; href: string }) => (
-          <a href={item.href} class="legal-link">{item.label}</a>
-        ))}
+        {
+          t.footer.legal.map((item: { label: string; href: string }) => (
+            <a href={item.href} class="legal-link">
+              {item.label}
+            </a>
+          ))
+        }
       </div>
     </div>
-
   </div>
 </footer>
+
+<script is:inline>
+  const currentYear = document.getElementById('currentYear');
+  currentYear.textContent  = new Date().getFullYear();
+</script>
 
 <style>
   .footer {
@@ -144,7 +163,9 @@ const { t, lang } = Astro.props;
     color: #fff;
   }
 
-  .logo-dot { color: var(--color-primary); }
+  .logo-dot {
+    color: var(--color-primary);
+  }
 
   .brand-desc {
     font-size: var(--text-sm);
@@ -216,7 +237,9 @@ const { t, lang } = Astro.props;
     transition: border-color var(--transition-fast);
   }
 
-  .contact-input::placeholder { color: #475569; }
+  .contact-input::placeholder {
+    color: #475569;
+  }
 
   .contact-input:focus {
     border-color: var(--color-primary);
@@ -267,6 +290,10 @@ const { t, lang } = Astro.props;
     letter-spacing: 0.15em;
     color: #475569;
   }
+  #currentYear {
+    margin: 0;
+    padding: 0;
+  }
 
   .legal-links {
     display: flex;
@@ -282,5 +309,7 @@ const { t, lang } = Astro.props;
     transition: color var(--transition-fast);
   }
 
-  .legal-link:hover { color: #94a3b8; }
+  .legal-link:hover {
+    color: #94a3b8;
+  }
 </style>
