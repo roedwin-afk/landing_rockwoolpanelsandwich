@@ -195,11 +195,12 @@ export const en = {
     desc: "Send us your project blueprints or requirements. Our technical team will provide a comprehensive quote and installation plan within 24 hours.",
     infoTitle: "Contact Information",
     infoDesc: "Reach us by phone, email, or fill out the form and we will respond within 24 hours.",
+    // en.ts — dentro de contact.info
     info: {
-      phone: { label: "Direct Line", value: "+52 55 9990 3546" },
-      email: { label: "Email Enquiries", value: "sales@buildinginsulationpanels.com" },
-      address: { label: "Headquarters", value: "Avenida Presidente Masaryk No. 61, Int. 901, Polanco V Sección, C.P. 11560, Miguel Hidalgo, Mexico City, Mexico" },
-      hours: { label: "Response Time", value: "Within 24 business hours" },
+      phone: { label: "Direct Line", value: "+52 55 9990 3546", href: "tel:+525599903546" },
+      email: { label: "Email Enquiries", value: "ventas@mequipo.com", href: "mailto:ventas@mequipo.com" },
+      address: { label: "Headquarters", value: "Avenida Presidente Masaryk No. 61, Int. 901, Polanco V Sección, C.P. 11560, Miguel Hidalgo, Mexico City, Mexico", href: "https://maps.google.com/?q=Av.+Pdte.+Masaryk+61-Int.+901,+Polanco+V+Secc,+Miguel+Hidalgo,+11560+Ciudad+de+Mexico" },
+      hours: { label: "Response Time", value: "Within 24 business hours", href: "" },
     },
     form: {
       title: "Request a Quote",

@@ -1,5 +1,5 @@
 ---
-import { Layers, Linkedin, Twitter, Mail } from "lucide-astro";
+import { Layers, Linkedin, Phone, Mail, Clock, MapPin } from "lucide-astro";
 import NavLinks from "../ui/NavLinks.astro";
 import type { TranslationKeys } from "../../i18n/en";
 import type { Lang } from "../../i18n/utils";
@@ -69,20 +69,45 @@ const { t, lang } = Astro.props;
       <div class="footer-contact" id="quote">
         <h6 class="footer-heading">{t.footer.contactTitle}</h6>
         <div class="contact-card">
-          <p class="contact-label">{t.footer.contactLabel}</p>
-          <input
-            type="email"
-            placeholder={t.footer.emailPlaceholder}
-            class="contact-input"
-          />
-          <button class="contact-btn">{t.footer.submitBtn}</button>
+          <div class="contact-item">
+            <div class="contact-icon"><Phone size={16} /></div>
+            <div>
+              <p class="contact-item-label">{t.contact.info.phone.label}</p>
+              <p class="contact-item-value">{t.contact.info.phone.value}</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><Mail size={16} /></div>
+            <div>
+              <p class="contact-item-label">{t.contact.info.email.label}</p>
+              <p class="contact-item-value">{t.contact.info.email.value}</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><MapPin size={16} /></div>
+            <div>
+              <p class="contact-item-label">{t.contact.info.address.label}</p>
+              <p class="contact-item-value">{t.contact.info.address.value}</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon"><Clock size={16} /></div>
+            <div>
+              <p class="contact-item-label">{t.contact.info.hours.label}</p>
+              <p class="contact-item-value">{t.contact.info.hours.value}</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Bottom bar -->
     <div class="footer-bottom">
-      © <span class="copyright" id="currentYear"> </span><span class="copyright">{t.footer.copyright}</span>
+      <div class="copyright-group">
+        <span class="copyright"
+          >© <span id="currentYear"></span> {t.footer.copyright}</span
+        >
+      </div>
       <div class="legal-links">
         {
           t.footer.legal.map((item: { label: string; href: string }) => (
@@ -97,8 +122,8 @@ const { t, lang } = Astro.props;
 </footer>
 
 <script is:inline>
-  const currentYear = document.getElementById('currentYear');
-  currentYear.textContent  = new Date().getFullYear();
+  const currentYear = document.getElementById("currentYear");
+  currentYear.textContent = new Date().getFullYear();
 </script>
 
 <style>
@@ -128,6 +153,17 @@ const { t, lang } = Astro.props;
       grid-template-columns: 2fr 1fr 1.5fr;
       gap: var(--space-16);
     }
+  }
+
+  .copyright-group {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #475569;
   }
 
   /* Brand */
@@ -220,50 +256,6 @@ const { t, lang } = Astro.props;
     gap: var(--space-3);
   }
 
-  .contact-label {
-    font-size: var(--text-xs);
-    color: #cbd5e1;
-  }
-
-  .contact-input {
-    background-color: #020617;
-    border: 1px solid var(--color-dark-border);
-    color: #fff;
-    font-size: var(--text-sm);
-    font-family: var(--font-sans);
-    padding: var(--space-3);
-    border-radius: var(--radius-sm);
-    outline: none;
-    transition: border-color var(--transition-fast);
-  }
-
-  .contact-input::placeholder {
-    color: #475569;
-  }
-
-  .contact-input:focus {
-    border-color: var(--color-primary);
-  }
-
-  .contact-btn {
-    background-color: var(--color-primary);
-    color: #fff;
-    font-size: var(--text-xs);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    padding: var(--space-3);
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    transition: background-color var(--transition-fast);
-    font-family: var(--font-sans);
-    border: none;
-  }
-
-  .contact-btn:hover {
-    background-color: var(--color-primary-hover);
-  }
-
   /* Bottom */
   .footer-bottom {
     padding-top: var(--space-8);
@@ -312,4 +304,39 @@ const { t, lang } = Astro.props;
   .legal-link:hover {
     color: #94a3b8;
   }
+
+  /* Elimina: .contact-label, .contact-input, .contact-btn */
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+}
+
+.contact-icon {
+  background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);
+  color: var(--color-primary);
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.contact-item-label {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-primary);
+  margin-bottom: 0.15rem;
+}
+
+.contact-item-value {
+  font-size: var(--text-sm);
+  color: #cbd5e1;
+  line-height: 1.5;
+}
 </style>

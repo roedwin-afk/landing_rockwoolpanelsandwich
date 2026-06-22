@@ -31,27 +31,32 @@ const t = useTranslations(lang);
             <p class="info-desc">{t.contact.infoDesc}</p>
 
             <div class="info-items">
-              <div class="info-item">
+              <a class="info-item" href={t.contact.info.phone.href}>
                 <div class="info-icon"><Phone size={18} /></div>
                 <div>
                   <span class="info-label">{t.contact.info.phone.label}</span>
                   <span class="info-value">{t.contact.info.phone.value}</span>
                 </div>
-              </div>
-              <div class="info-item">
+              </a>
+              <a class="info-item" href={t.contact.info.email.href}>
                 <div class="info-icon"><Mail size={18} /></div>
                 <div>
                   <span class="info-label">{t.contact.info.email.label}</span>
                   <span class="info-value">{t.contact.info.email.value}</span>
                 </div>
-              </div>
-              <div class="info-item">
+              </a>
+              <a
+                class="info-item"
+                href={t.contact.info.address.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <div class="info-icon"><MapPin size={18} /></div>
                 <div>
                   <span class="info-label">{t.contact.info.address.label}</span>
                   <span class="info-value">{t.contact.info.address.value}</span>
                 </div>
-              </div>
+              </a>
               <div class="info-item">
                 <div class="info-icon"><Clock size={18} /></div>
                 <div>
@@ -541,6 +546,17 @@ const t = useTranslations(lang);
       backdrop-filter: blur(4px);
     }
 
+    a.info-item {
+      text-decoration: none;
+      transition: opacity var(--transition-fast);
+    }
+    a.info-item:hover {
+      opacity: 0.75;
+    }
+    a.info-item:hover .info-icon {
+      background-color: rgba(249, 115, 22, 0.2);
+    }
+
     /* Modal */
     .map-modal {
       display: none;
@@ -636,6 +652,20 @@ const t = useTranslations(lang);
 
     .gmaps-btn:hover {
       background-color: var(--color-primary-hover);
+    }
+    /* Evitar trampa de scroll en móvil */
+    .map-mini {
+      pointer-events: none;
+    }
+
+    .map-large {
+      touch-action: none;
+    }
+
+    @media (max-width: 768px) {
+      .map-large {
+        touch-action: pan-x;
+      }
     }
   </style>
 </BaseLayout>

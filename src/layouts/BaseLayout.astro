@@ -64,7 +64,6 @@ const alternateLang: Lang = lang === "en" ? "es" : "en";
     <ScrollReveal />
     <Footer t={t} lang={lang} />
   </body><!-- Leaflet -->
-  
 </html>
 
 <style is:global>
@@ -210,3 +209,85 @@ const alternateLang: Lang = lang === "en" ? "es" : "en";
     transform: translateY(0);
   }
 </style>
+<script is:inline>
+  function initActiveNav() {
+    const navLinks = document.querySelectorAll(".nav-links--navbar .nav-link");
+
+    // 1. Activo por pathname (páginas)
+    const currentPath = window.location.pathname;
+    navLinks.forEach((link) => {
+      const href = link.getAttribute("href") || "";
+      // Solo links sin ancla
+      if (
+        !href.includes("#") &&
+        href !== "/" &&
+        currentPath.includes(href.replace(/\/$/, ""))
+      ) {
+        link.classList.add("active");
+      }
+    });
+
+    // 2. Activo por hash al cargar
+    if (window.location.hash) {
+      navLinks.forEach((link) => {
+        if (link.getAttribute("href")?.includes(window.location.hash)) {
+          link.classList.add("active");
+        }
+      });
+    }
+
+    // 3. Activo por scroll (IntersectionObserver)
+    const anchorLinks = [...navLinks].filter((l) =>
+      (l.getAttribute("href") || "").includes("#"),
+    );
+
+    if (anchorLinks.length === 0) return;
+
+    const sectionIds = anchorLinks.map(
+      (l) => (l.getAttribute("href") || "").split("#")[1],
+    );
+
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean);
+
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const id = entry.target.id;
+          anchorLinks.forEach((link) => {
+            if ((link.getAttribute("href") || "").includes(`#${id}`)) {
+              if (entry.isIntersecting) {
+                link.classList.add("active");
+              } else {
+                link.classList.remove("active");
+              }
+            }
+          });
+        });
+      },
+      { threshold: 0.4 },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
+
+  // 4. Smooth scroll para links de ancla (#)
+  document.querySelectorAll('a[href*="#"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const href = link.getAttribute("href") || "";
+      const hashIndex = href.indexOf("#");
+      const id = href.slice(hashIndex + 1);
+      const target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.pushState(null, "", `#${id}`);
+      }
+    });
+  });
+
+  document.addEventListener("astro:page-load", initActiveNav);
+</script>

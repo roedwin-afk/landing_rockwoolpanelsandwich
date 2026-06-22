@@ -198,10 +198,10 @@ export const es: TranslationKeys = {
     infoTitle: "Información de Contacto",
     infoDesc: "Contáctanos por teléfono, email, o rellena el formulario y te responderemos en 24 horas.",
     info: {
-      phone: { label: "Línea Directa", value: "+52 55 9990 3546" },
-      email: { label: "Email", value: "sales@buildinginsulationpanels.com" },
-      address: { label: "Sede Principal", value: "Avenida Presidente Masaryk No. 61, Int. 901, Polanco V Sección, C.P. 11560, Miguel Hidalgo, Ciudad de México, México" },
-      hours: { label: "Tiempo de Respuesta", value: "En menos de 24 horas hábiles" },
+      phone: { label: "Direct Line", value: "+52 55 9990 3546", href: "tel:+525599903546" },
+      email: { label: "Email Enquiries", value: "ventas@mequipo.com", href: "mailto:ventas@mequipo.com" },
+      address: { label: "Headquarters", value: "Avenida Presidente Masaryk No. 61, Int. 901, Polanco V Sección, C.P. 11560, Miguel Hidalgo, Mexico City, Mexico", href: "https://maps.google.com/?q=Av.+Pdte.+Masaryk+61-Int.+901,+Polanco+V+Secc,+Miguel+Hidalgo,+11560+Ciudad+de+Mexico" },
+      hours: { label: "Response Time", value: "Within 24 business hours", href: "" },
     },
     form: {
       title: "Solicitud de Cotización",
