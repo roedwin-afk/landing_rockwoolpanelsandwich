@@ -1,23 +1,26 @@
 ---
-import { BlogList } from "astro-blog-kit/components";
-import { createWPClient } from "astro-blog-kit/utils";
-import config from "../../../../blog.config";
+import { BlogList } from 'astro-blog-kit/components';
+import { createWPClient } from 'astro-blog-kit/utils';
+import { resolveHero, resolveUI } from 'astro-blog-kit';
+import config from '../../../../blog.config';
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 
 const wp = createWPClient(config.wpUrl);
-const { posts, totalPages } = await wp.getPosts({
-  perPage: config.postsPerPage ?? 5,
-});
+const { posts, totalPages } = await wp.getPosts({ perPage: config.postsPerPage ?? 5 });
 
-const tb = {
+const locale = config.locale ?? 'en';
+const hero = resolveHero(config.hero, locale);
+const ui = resolveUI(config.ui, locale);
+
+const bt = {
   blog: {
-    tagline: "Nuestro blog",
-    title_line1: "Últimos",
-    title_line2: "Artículos",
-    description: "Bienvenido a nuestro blog.",
-    btncta: "Leer más",
-    btn_prev: "Anterior",
-    btn_next: "Siguiente",
+    tagline:     hero.tagline,
+    title_line1: hero.titleLine1,
+    title_line2: hero.titleLine2,
+    description: hero.description,
+    btncta:      ui.readMoreLabel,
+    btn_prev:    ui.btnPrev,
+    btn_next:    ui.btnNext,
   },
 };
 
@@ -35,8 +38,9 @@ const t = useTranslations(lang);
     totalPages={totalPages}
     basePath={`${base}blog/page/`}
     blogBase={`${base}blog/`}
-    dateLocale={config.locale ?? "en"}
-    t={tb}
-    locale={config.locale ?? "en"}
+    dateLocale={locale}
+    t={bt}
+    locale={locale}
+    layout={config.defaultLayout ?? 'magazine'}
   />
 </BaseLayout>
