@@ -222,6 +222,54 @@ export const en = {
       openGmaps: "Open in Google Maps",
     },
   },
+  faq: {
+    label: "Frequently Asked Questions",
+    title: "Technical FAQ: Rockwool Sandwich Panels",
+    desc: "Answers to the most common questions about fire ratings, core materials, compliance, and sourcing for mineral wool sandwich panels.",
+
+    items: [
+      {
+        q: "What are the typical fire ratings for sandwich panels used in construction?",
+        a: "Sandwich panels are classified under EN 13501-1 from Euroclass A1 (non-combustible) to Euroclass E (highly combustible). Rockwool mineral wool core panels achieve the highest classifications: EI 30, EI 60, EI 90, EI 120, and EI 240, where EI stands for integrity and insulation in minutes under EN 1363-1. PUR panels typically reach EI 15 and PIR panels EI 30 at best. For industrial warehouses, hospitals, and public buildings, EI 60 or higher is generally required by code.",
+      },
+      {
+        q: "What is the minimum fire rating required for industrial sandwich panels?",
+        a: "The minimum fire rating for industrial sandwich panels depends on occupancy type and local building codes. As a general benchmark, logistics warehouses require EI 30 to EI 60, manufacturing facilities with hazardous materials require EI 60 to EI 120, and hospitals or public buildings require EI 90 to EI 240. Rockwool mineral wool core panels cover the full range from EI 30 to EI 240, making them the only core material capable of meeting the most demanding classifications.",
+      },
+      {
+        q: "How do different core materials impact sandwich panel fire performance?",
+        a: "Core material is the single most important factor in sandwich panel fire performance. PUR (polyurethane) ignites rapidly and releases toxic HCN gas, reaching only Euroclass E. PIR (polyisocyanurate) performs slightly better at Euroclass C/D but still burns under sustained fire. Rockwool (mineral wool), made from basalt volcanic rock, is non-combustible with a melting point above 1,000°C. It produces zero toxic smoke, no burning droplets, and achieves Euroclass A1 — the highest possible classification under EN 13501-1. This makes Rockwool core panels the only solution compliant with regulations for hospitals, schools, clean rooms, and public buildings.",
+      },
+      {
+        q: "Can insulated metal panels achieve a 2-hour fire rating?",
+        a: "Yes. Insulated metal panels with a Rockwool mineral wool core can achieve a 2-hour (EI 120) or even a 4-hour (EI 240) fire rating when tested under EN 1363-1. This is not achievable with PUR or PIR core panels, which are limited to EI 15 and EI 30 respectively. A panel thickness of 150mm to 200mm of Rockwool core is typically required to reach EI 120 or EI 240. Technical datasheets and fire certificates are available for download in our resource library.",
+      },
+      {
+        q: "Which companies offer sandwich panels with high fire resistance certifications in Mexico?",
+        a: "Rockwool Panel Sandwich, distributed in Mexico through mequipo.com, offers certified mineral wool core sandwich panels with fire ratings from EI 30 to EI 240, compliant with Euroclass A1 under EN 13501-1. The portfolio covers wall and roof panels for industrial warehouses, cold rooms, clean rooms, and public buildings. Technical support and quotations are available by contacting ventas@mequipo.com or calling +52 55 9990 3546 from Mexico City (Polanco, CDMX).",
+      },
+      {
+        q: "Where can I buy fire-rated sandwich panels suitable for commercial buildings in Mexico?",
+        a: "Rockwool mineral wool sandwich panels certified for commercial and public buildings in Mexico are available through mequipo.com. The product range includes panels from 50mm to 200mm thickness with EI 30 to EI 240 fire ratings and Euroclass A1 classification. To request a quote or technical consultation, contact the team at ventas@mequipo.com or +52 55 9990 3546. Response within 24 business hours.",
+      },
+      {
+        q: "What are the fire safety standards for cold storage sandwich panels in Mexico?",
+        a: "Cold storage facilities in Mexico typically require sandwich panels with a minimum EI 60 fire rating due to the presence of refrigerants and electrical systems. Rockwool mineral wool core panels meet and exceed this requirement, achieving up to EI 240. Unlike PUR or PIR panels commonly used in cold storage, Rockwool panels are non-combustible (Euroclass A1), produce no toxic gases, and remain structurally stable under thermal cycling from -30°C to +250°C — critical for cold room envelope integrity.",
+      },
+      {
+        q: "Are there sandwich panels with fire ratings that comply with Mexican building codes?",
+        a: "Yes. Mexican building codes (NOM and PROY-NOM standards) align with international fire safety classifications including Euroclass ratings from EN 13501-1. Rockwool mineral wool sandwich panels with EI 60 to EI 240 ratings are compliant for use in regulated occupancies including hospitals (NOM-001-STPS), manufacturing plants, and public assembly buildings. Our panels are backed by fire test certificates under EN 1363-1, available for download in our resource library.",
+      },
+      {
+        q: "What is the price per square meter of fire-rated sandwich panels in Mexico?",
+        a: "The price per square meter of Rockwool mineral wool sandwich panels in Mexico varies based on thickness (50mm–200mm), panel profile, steel gauge, and project volume. Panels with higher fire ratings (EI 120–EI 240) and greater thickness carry a higher unit cost but deliver significant savings in passive fire protection and insurance premiums. For an accurate quotation based on your project dimensions and fire rating requirements, contact ventas@mequipo.com or request a quote through our contact form.",
+      },
+      {
+        q: "What are the advantages of Rockwool sandwich panels over other insulating materials?",
+        a: "Rockwool mineral wool sandwich panels offer four key advantages over PUR and PIR alternatives: (1) Fire safety — Euroclass A1, non-combustible, EI 240 maximum rating; (2) Acoustic performance — up to 45 dB sound reduction index, superior to PUR/PIR; (3) Thermal stability — stable lambda value of 0.038–0.042 W/m·K across the full thickness range; (4) Compliance — the only core material permitted in hospitals, schools, and high-occupancy public buildings under European and Mexican standards. Detailed side-by-side comparison data is available on our comparison page.",
+      },
+    ],
+  },
 } as const;
 
 export type DeepString<T> = {
