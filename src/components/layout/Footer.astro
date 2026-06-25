@@ -15,6 +15,7 @@ interface Props {
 const { t, lang } = Astro.props;
 
 const base = import.meta.env.BASE_URL;
+console.log({lang});
 ---
 
 <footer class="footer">
@@ -113,7 +114,7 @@ const base = import.meta.env.BASE_URL;
       <div class="legal-links">
         {
           t.footer.legal.map((item: { label: string; href: string }) => (
-            <a href={lang === "en" ? `${base}${item.href}`:`${base}${item.href}`} class="legal-link">
+            <a href={lang === "en" ? `${base}${item.href}`:`${base}es/${item.href}`} class="legal-link">
               {item.label}
             </a>
           ))

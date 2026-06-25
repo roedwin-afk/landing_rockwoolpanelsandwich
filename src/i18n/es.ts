@@ -7,7 +7,7 @@ export const es: TranslationKeys = {
     specs: "Datos Técnicos",
     downloads: "Descargas",
     quote: "Solicitar Presupuesto",
-    contact: "Contact",
+    contact: "Contacto",
     blog: "Blog",
   },
   hero: {
