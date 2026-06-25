@@ -101,7 +101,7 @@ export const en = {
     legal: [
       { label: "Privacy Policy", href: "#" },
       { label: "Technical Terms", href: "#" },
-      { label: "Compliance", href: "#" },
+      { label: "FAQS", href: "faqs" },
     ],
   },
   meta: {

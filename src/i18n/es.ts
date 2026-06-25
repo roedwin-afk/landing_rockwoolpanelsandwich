@@ -103,7 +103,7 @@ export const es: TranslationKeys = {
     legal: [
       { label: "Política de Privacidad", href: "#" },
       { label: "Términos Técnicos", href: "#" },
-      { label: "Cumplimiento", href: "#" },
+      { label: "FAQS", href: "faqs" },
     ],
   },
   meta: {
