@@ -7,6 +7,7 @@ export const en = {
     quote: "Request Quote",
     contact: "Contact",
     blog: "Blog",
+    faqs: "FAQs",
   },
   hero: {
     badge: "Industrial Fire Protection",
